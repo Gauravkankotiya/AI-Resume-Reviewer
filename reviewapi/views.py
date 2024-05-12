@@ -18,7 +18,7 @@ def review_resume(text):
     response = openai.completions.create(
         model="gpt-3.5-turbo-instruct", prompt=text, temperature=0.5, max_tokens=200
     )
-    print(response.choices[0].text)
+    # print(response.choices[0].text)
     return response.choices[0].text.strip()
 
 

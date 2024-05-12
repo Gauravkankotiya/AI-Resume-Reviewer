@@ -39,7 +39,6 @@
                 <input type="file" id="pdfInput" class="file-input" accept=".pdf">
             </div>
             <button class="upload-btn" onclick="uploadResume(), $(this).hide()">Get Score</button>
-            <button id="improvements" style="display: none;">Show Suggestions</button>
             <div class="loader" id="loader"></div>
             <div id="response" class="response"></div>
             <div id="improvement-points">
@@ -132,20 +131,18 @@
                 responseDiv.text(`Your resume scored ${response.score}.`);
                 responseDiv.css('display', 'block');
                 // Create button for improvement points
-                const button = $('#improvements');
-                button.show()
-                button.on('click', function () {
-                    // Display improvement points
-                    const pointsDiv = $('#improvement-points');
-                    pointsDiv.css('display', 'block');
 
-                    // Populate improvement points
-                    const improvementList = $('#improvement-list');
-                    improvementList.empty(); // Clear previous points
-                    response.points.forEach(function (point) {
-                        improvementList.append(`<li>${point}</li>`);
-                    });
+                // Display improvement points
+                const pointsDiv = $('#improvement-points');
+                pointsDiv.css('display', 'block');
+
+                // Populate improvement points
+                const improvementList = $('#improvement-list');
+                improvementList.empty(); // Clear previous points
+                response.points.forEach(function (point) {
+                    improvementList.append(`<li>${point}</li>`);
                 });
+
                 $('#home').append(button);
                 setTimeout(() => {
                     responseDiv.css('display', 'none');
