@@ -3,7 +3,7 @@ from django.http import JsonResponse
 import fitz
 import openai
 
-openai.api_key = "sk-proj-nvshsPSlSwTO6TyFGm5vT3BlbkFJbMx154g5GZUyy4rAa6gd"
+openai.api_key = ""
 
 
 def extract_text_from_pdf(pdf_file):
