@@ -29,15 +29,19 @@
             <h1 class="title">Get a FREE Expert Analysis of Your Resume</h1>
             <div class="upload-area centered-div" style="padding: 10px 100px;">
                 <label for="pdfInput" class="upload-label" style="padding: 50px 10px;">
-                    <span class="icon">&#128206;</span>
-                    <span class="text" style="margin-top :100px;">Choose your resume to get evaluated</span>
+                    <img src="{% static 'resume-logo.jpg' %}" alt="Upload Logo" height="150px" width="150px"
+                        id="upload-logo" style="display: none; mix-blend-mode: multiply;">
+                    <div id="uploading-hide">
+                        <span class="icon">&#128206;</span>
+                        <span class="text" style="margin-top :100px;">Choose your resume to get evaluated</span>
+                    </div>
                 </label>
                 <input type="file" id="pdfInput" class="file-input" accept=".pdf">
             </div>
             <button class="upload-btn" onclick="uploadResume(), $(this).hide()">Get Score</button>
+            <button id="improvements" style="display: none;">Show Suggestions</button>
             <div class="loader" id="loader"></div>
             <div id="response" class="response"></div>
-            <button id="improvements">Show Improvement Points</button>
             <div id="improvement-points">
                 <h3>Points For Improvement:</h3>
                 <ul id="improvement-list"></ul>
@@ -91,6 +95,15 @@
 <script>
     $(document).ready(function () {
         $("#improvements").hide()
+        $('#pdfInput').on('change', function () {
+            if (this.files && this.files[0]) {
+                $('#upload-logo').show();
+                $('#uploading-hide').hide()
+            } else {
+                $('#upload-logo').hide();
+                $('#uploading-hide').show()
+            }
+        });
     });
 
     function uploadResume() {

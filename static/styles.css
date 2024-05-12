@@ -147,6 +147,18 @@ html {
     font-size: large;
 }
 
+#improvements {
+    margin-top: 20px;
+    border-radius: 10px;
+    border-width: 1px;
+    transition-duration: 0.4s;
+}
+
+#improvements:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
 .features-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -195,8 +207,8 @@ html {
     border-top: 5px solid #3498db;
     /* Blue */
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     animation: spin 2s linear infinite;
     display: none;
     position: fixed;
