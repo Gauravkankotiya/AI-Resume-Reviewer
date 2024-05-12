@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Reviewer</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+    <div id="home">
+        <nav class="navbar">
+            <div class="logo">
+                <img style="margin-left: 50px;" src="{% static 'logo.png' %}" alt="Logo">
+                <h2 class="logo-text">AI Reviewer</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">About</a></li>
+
+            </ul>
+        </nav>
+        <div class="container">
+            <h1 class="title">Get a FREE Expert Analysis of Your Resume</h1>
+            <div class="upload-area centered-div" style="padding: 10px 100px;">
+                <label for="pdfInput" class="upload-label" style="padding: 50px 10px;">
+                    <span class="icon">&#128206;</span>
+                    <span class="text" style="margin-top :100px;">Choose your resume to get evaluated</span>
+                </label>
+                <input type="file" id="pdfInput" class="file-input" accept=".pdf">
+            </div>
+            <button class="upload-btn" onclick="uploadResume(), $(this).hide()">Get Score</button>
+            <div class="loader" id="loader"></div>
+            <div id="response" class="response"></div>
+            <button id="improvements">Show Improvement Points</button>
+            <div id="improvement-points">
+                <h3>Points For Improvement:</h3>
+                <ul id="improvement-list"></ul>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="centered-div" style="margin-top: 100px;">
+        <div>
+            <h2>The most powerful resume reviewer, powered by AI</h2>
+            <span style="color: gray; margin-left:20px"> Know what makes our resume reviewer the best you can get in the
+                industry</span>
+        </div>
+    </div>
+    <div class="features-container" id="features">
+        <div class="feature-card">
+            <div class="card-content">
+                <h2>State of the art resume AI</h2>
+                <p>Our resume reviews are powered by cutting edge AI trained on millions of optimized resumes.</p>
+            </div>
+        </div>
+        <div class="feature-card">
+            <div class="card-content">
+                <h2>Saves hours of work</h2>
+                <p>Our resume review saves an average of 1.5 hours of extra effort on your resume.</p>
+            </div>
+        </div>
+        <div class="feature-card">
+            <div class="card-content">
+                <h2>Precise action points</h2>
+                <p>No more wordy reviews! Just use the suggestions by our powerful AI to make a high impact resume.
+                </p>
+            </div>
+        </div>
+        <div class="feature-card">
+            <div class="card-content">
+                <h2>Skill Gap Assessment</h2>
+                <p>Identify missing skills on your resume, fix them and boost job interviews.</p>
+            </div>
+        </div>
+    </div>
+    <div class="centered-div">
+        <h2 style="margin-top: 50px; color:rgb(26, 28, 29);">Get your free resume analysis.
+            Increase your Interviews.</h2>
+        <a href="#home"><button class="upload-btn" onclick="this.disabled=true; uploadResume()">Get
+                Started</button></button></a>
+    </div>
+
+</body>
+<script>
+    $(document).ready(function () {
+        $("#improvements").hide()
+    });
+
+    function uploadResume() {
+        const fileInput = document.getElementById('pdfInput');
+        const file = fileInput.files[0];
+
+        if (!file) {
+            $('.upload-btn').show();
+            alert('Please select a file');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('resumeFile', file);
+        $('#loader').show();
+        $.ajax({
+            url: "{% url 'review' %}",
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                $('#loader').hide();
+                $('.upload-btn').show();
+                const responseDiv = $('#response');
+                responseDiv.text(`Your resume scored ${response.score}.`);
+                responseDiv.css('display', 'block');
+                // Create button for improvement points
+                const button = $('#improvements');
+                button.show()
+                button.on('click', function () {
+                    // Display improvement points
+                    const pointsDiv = $('#improvement-points');
+                    pointsDiv.css('display', 'block');
+
+                    // Populate improvement points
+                    const improvementList = $('#improvement-list');
+                    improvementList.empty(); // Clear previous points
+                    response.points.forEach(function (point) {
+                        improvementList.append(`<li>${point}</li>`);
+                    });
+                });
+                $('#home').append(button);
+                setTimeout(() => {
+                    responseDiv.css('display', 'none');
+                }, 60000); // Hide response message after 1 Minute
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('.upload-btn').show();
+                console.error('Error:', errorThrown);
+                $('#response').text('An error occurred. Please try again.');
+            }
+        });
+    }
+</script>
+
+</html>

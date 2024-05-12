@@ -1,0 +1,252 @@
+body {
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Add this CSS to your styles.css file */
+.centered-div {
+    margin: 0 auto;
+    width: 50%;
+    /* Or any width you prefer */
+}
+
+.navbar {
+    background-color: #ffffff;
+    /* Background color of the navbar */
+    padding: 10px;
+    /* Adjust padding as needed */
+    display: flex;
+    /* Use flexbox to arrange items */
+    justify-content: space-between;
+    /* Align items at the beginning and end */
+    align-items: center;
+    /* Center items vertically */
+}
+
+.text {
+    font-size: small;
+    color: #ffffff;
+}
+
+.logo {
+    display: flex;
+    /* Use flexbox for logo and logo text */
+    align-items: center;
+    /* Center items vertically */
+}
+
+.logo img {
+    width: 40px;
+    /* Adjust logo size as needed */
+    height: 40px;
+    margin-right: 10px;
+    /* Adjust spacing between logo and text */
+}
+
+.nav-links {
+    list-style: none;
+    /* Remove default list styles */
+    margin: 0;
+    /* Remove default margin */
+    padding: 0;
+    /* Remove default padding */
+    display: flex;
+    /* Use flexbox for navigation links */
+}
+
+.nav-links li {
+    margin-right: 20px;
+    /* Adjust spacing between links */
+}
+
+.nav-links li a {
+    color: #000000;
+    /* Text color of the links */
+    text-decoration: none;
+    /* Remove underline */
+}
+
+
+.container {
+    /* max-width: 600px; */
+    margin: 0px auto 20px auto;
+    height: 600px;
+    /* Increased margin-top for spacing */
+    text-align: center;
+    padding: 20px;
+    background-color: transparent;
+    /* Set background color to transparent */
+    background-image: url('./bg.jpg');
+    /* Replace 'background_image.jpg' with your image path */
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    /* Increased border-radius for round corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.title {
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #d6e1ee;
+}
+
+.upload-area {
+    border: 2px dashed #ffffff;
+    padding: 50px;
+    position: relative;
+    /* margin-left: 530px; */
+    width: 150px;
+    margin-bottom: 50px;
+    /* margin-top: 50px; */
+    transition: border-color 0.3s ease;
+    border-radius: 10px;
+    height: 150px;
+}
+
+.upload-area:hover {
+    border-color: #0056b3;
+}
+
+.upload-label {
+    cursor: pointer;
+}
+
+.icon {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.file-input {
+    display: none;
+}
+
+.upload-btn {
+    padding: 10px 20px;
+    transition-duration: 0.4s;
+    color: #020202;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.upload-btn:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.response {
+    margin-top: 20px;
+    font-weight: bold;
+    display: none;
+    color: #28a745;
+    font-size: large;
+}
+
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* Increased minmax width */
+    gap: 40px;
+    /* Increased gap between cards */
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 20px;
+    /* Increased border-radius for round corners */
+    margin-top: 20px;
+}
+
+.feature-card {
+    background-color: rgba(180, 216, 230, 0.4);
+    padding: 20px;
+    border-radius: 20px;
+    /* Increased border-radius for round corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card .card-content {
+    text-align: left;
+}
+
+.feature-card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.feature-card p {
+    font-size: 16px;
+    color: #333;
+}
+
+.feature-card:hover {
+    border-color: #1a242e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Loader styles */
+.loader {
+    border: 5px solid #f3f3f3;
+    /* Light grey */
+    border-top: 5px solid #3498db;
+    /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Improvement points styles */
+#improvement-points {
+    display: none;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: rgba(rgb(195, 177, 177), rgb(170, 194, 170), rgb(195, 195, 218), 0.7);
+}
+
+#improvement-points h3 {
+    margin-top: 0;
+    color: #ffffff;
+}
+
+#improvement-points ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#improvement-points li {
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+#improvement-points li:before {
+    content: '\2022';
+    /* Bullet point */
+    color: #3498db;
+    /* Blue */
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
